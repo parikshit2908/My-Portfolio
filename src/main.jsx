@@ -1,12 +1,13 @@
-const root = document.getElementById("root");
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+import App from "./App";
+import "./index.css";
 
-root.innerHTML = `
-  <div style="
-    color: white;
-    font-size: 24px;
-    padding: 40px;
-    font-family: system-ui;
-  ">
-    ✅ React is loading on this device.
-  </div>
-`;
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>
+);
