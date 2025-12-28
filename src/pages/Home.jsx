@@ -32,7 +32,7 @@ const Home = () => {
               </h1>
 
               <p>
-                You’re not scrolling a page — you’re moving through depth.
+                I build modern, performance-focused web applications using React, JavaScript, and backend integrations, with strong attention to UI, animation, and real-world usability.
               </p>
 
               {/* SINGLE, CORRECT BUTTON SET */}
