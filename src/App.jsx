@@ -1,37 +1,27 @@
 import Navbar from "./components/Navbar";
 import AppRoutes from "./routes/AppRoutes";
-import { useIsTouch } from "./hooks/useIsTouch";
+import useIsMobile from "./hooks/useIsMobile";
+
+import BackgroundObjects from "./components/BackgroundObjects";
+import MultiStarfield from "./components/MultiStarfield";
+import WireframeRings from "./components/WireframeRings";
+import CustomCursor from "./components/CustomCursor";
+import DebugHUD from "./components/DebugHUD";
 
 function App() {
-  const isTouch = useIsTouch();
-
-  // ANDROID SAFE MODE: NO EFFECTS
-  if (isTouch) {
-    return (
-      <>
-        <Navbar />
-        <AppRoutes />
-      </>
-    );
-  }
-
-  // DESKTOP ONLY
-  const MultiStarfield = require("./components/MultiStarfield").default;
-  const BackgroundObjects = require("./components/BackgroundObjects").default;
-  const WireframeRings = require("./components/WireframeRings").default;
-  const CustomCursor = require("./components/CustomCursor").default;
-  const DebugHUD = require("./components/DebugHUD").default;
-  const { useCameraDrift } = require("./hooks/useCameraDrift");
-
-  useCameraDrift(6);
+  const isMobile = useIsMobile();
 
   return (
     <div className="camera">
-      <MultiStarfield />
-      <BackgroundObjects />
-      <WireframeRings />
-      <CustomCursor />
-      <DebugHUD />
+      {/* SAFE visuals */}
+      {!isMobile && <MultiStarfield />}
+      {!isMobile && <BackgroundObjects />}
+      {!isMobile && <WireframeRings />}
+
+      {/* Desktop-only */}
+      {!isMobile && <CustomCursor />}
+      {!isMobile && <DebugHUD />}
+
       <Navbar />
       <AppRoutes />
     </div>

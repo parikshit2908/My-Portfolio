@@ -1,39 +1,20 @@
-import { motion } from "framer-motion";
-import { useState } from "react";
-import { useEffects } from "../context/EffectContext";
+import useIsMobile from "../hooks/useIsMobile";
 
-const Motion3D = ({ children }) => {
-  const { godMode } = useEffects();
-  const [rotate, setRotate] = useState({ x: 0, y: 0 });
+export default function Motion3D({ children }) {
+  const isMobile = useIsMobile();
 
-  const handleMouseMove = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientY - rect.top - rect.height / 2;
-    const y = e.clientX - rect.left - rect.width / 2;
-
-    const strength = godMode ? 18 : 30;
-
-    setRotate({
-      x: -(x / strength),
-      y: y / strength,
-    });
-  };
+  if (isMobile) {
+    return <>{children}</>;
+  }
 
   return (
-    <motion.div
-      onMouseMove={handleMouseMove}
-      onMouseLeave={() => setRotate({ x: 0, y: 0 })}
-      animate={{ rotateX: rotate.x, rotateY: rotate.y }}
-      transition={{
-        type: "spring",
-        stiffness: godMode ? 180 : 120,
-        damping: godMode ? 12 : 15,
+    <div
+      style={{
+        transformStyle: "preserve-3d",
+        perspective: "1200px",
       }}
-      style={{ transformStyle: "preserve-3d" }}
     >
       {children}
-    </motion.div>
+    </div>
   );
-};
-
-export default Motion3D;
+}
