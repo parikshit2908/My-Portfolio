@@ -1,38 +1,40 @@
-import { BrowserRouter } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import AppRoutes from "./routes/AppRoutes";
-import CustomCursor from "./components/CustomCursor";
-import MultiStarfield from "./components/MultiStarfield";
-import BackgroundObjects from "./components/BackgroundObjects";
-import WireframeRings from "./components/WireframeRings";
-import DebugHUD from "./components/DebugHUD";
-import { EffectProvider } from "./context/EffectContext";
-import { TimeProvider } from "./context/TimeContext";
-import { useCameraDrift } from "./hooks/useCameraDrift";
-import "./App.css";
-
-function CameraWrapper({ children }) {
-  useCameraDrift(6);
-  return <div className="camera">{children}</div>;
-}
+import { useIsTouch } from "./hooks/useIsTouch";
 
 function App() {
+  const isTouch = useIsTouch();
+
+  // ANDROID SAFE MODE: NO EFFECTS
+  if (isTouch) {
+    return (
+      <>
+        <Navbar />
+        <AppRoutes />
+      </>
+    );
+  }
+
+  // DESKTOP ONLY
+  const MultiStarfield = require("./components/MultiStarfield").default;
+  const BackgroundObjects = require("./components/BackgroundObjects").default;
+  const WireframeRings = require("./components/WireframeRings").default;
+  const CustomCursor = require("./components/CustomCursor").default;
+  const DebugHUD = require("./components/DebugHUD").default;
+  const { useCameraDrift } = require("./hooks/useCameraDrift");
+
+  useCameraDrift(6);
+
   return (
-    <BrowserRouter>
-      <EffectProvider>
-        <TimeProvider>
-          <CameraWrapper>
-            <MultiStarfield />
-            <BackgroundObjects />
-            <WireframeRings />
-            <CustomCursor />
-            <DebugHUD />
-            <Navbar />
-            <AppRoutes />
-          </CameraWrapper>
-        </TimeProvider>
-      </EffectProvider>
-    </BrowserRouter>
+    <div className="camera">
+      <MultiStarfield />
+      <BackgroundObjects />
+      <WireframeRings />
+      <CustomCursor />
+      <DebugHUD />
+      <Navbar />
+      <AppRoutes />
+    </div>
   );
 }
 
