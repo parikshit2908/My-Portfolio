@@ -1,0 +1,89 @@
+/* =====================================================
+   RESPONSIVE + DEVICE SAFE LAYER
+===================================================== */
+
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* GLASS CONTAINERS */
+.glass,
+.glass-card {
+  width: min(94vw, 1200px);
+  margin-inline: auto;
+  padding: clamp(20px, 4vw, 48px);
+  border-radius: clamp(18px, 4vw, 32px);
+}
+
+/* TYPOGRAPHY SCALE */
+h1 {
+  font-size: clamp(2.2rem, 6vw, 4.2rem);
+  line-height: 1.05;
+}
+
+h2 {
+  font-size: clamp(1.6rem, 4.5vw, 2.6rem);
+}
+
+h3 {
+  font-size: clamp(1.2rem, 3.2vw, 1.6rem);
+}
+
+p, li {
+  font-size: clamp(0.95rem, 2.8vw, 1.05rem);
+  line-height: 1.7;
+}
+
+/* NAVBAR */
+.navbar {
+  padding: 16px clamp(18px, 4vw, 48px);
+}
+
+/* TAGS */
+.tag {
+  font-size: 0.75rem;
+  padding: 6px 12px;
+  border-radius: 999px;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .glass-float,
+  .parallax,
+  .depth-layer {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+/* TOUCH DEVICES */
+@media (hover: none) {
+  .custom-cursor {
+    display: none !important;
+  }
+  body {
+    cursor: auto;
+  }
+}
+
+/* CANVAS SAFETY */
+canvas {
+  max-width: 100%;
+  pointer-events: none;
+}
+
+/* FOOTER */
+footer {
+  padding: 40px clamp(18px, 4vw, 60px);
+  font-size: 0.85rem;
+}
+
+/* REDUCED MOTION */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

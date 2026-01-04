@@ -1,0 +1,349 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Sora:wght@500;600;700&family=DM+Sans:wght@400;500;700&display=swap");
+
+/* ================= RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@media (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  background:
+    radial-gradient(1200px 800px at 70% -10%, rgba(120,140,255,0.22), transparent 60%),
+    radial-gradient(900px 700px at -10% 30%, rgba(110,231,183,0.18), transparent 60%),
+    radial-gradient(600px 600px at 90% 80%, rgba(180,140,255,0.16), transparent 60%),
+    #020617;
+  color: #eef1fb;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont;
+  overflow-x: hidden;
+}
+
+/* ================= COLOR TOKENS ================= */
+:root {
+  --accent-primary: #8fb3ff;
+  --accent-secondary: #7cf2c2;
+  --accent-tertiary: #d2b3ff;
+
+  --heading-gradient-primary: linear-gradient(
+    135deg,
+    #b6c8ff 0%,
+    #8fb3ff 45%,
+    #7cf2c2 100%
+  );
+
+  --heading-gradient-secondary: linear-gradient(
+    135deg,
+    #c9b6ff 0%,
+    #9aa9ff 55%,
+    #8fb3ff 100%
+  );
+
+  --text-secondary: rgba(230,233,242,0.78);
+  --text-muted: rgba(230,233,242,0.55);
+
+  --glass-bg-strong: rgba(255,255,255,0.11);
+  --glass-bg-soft: rgba(255,255,255,0.045);
+  --glass-border: rgba(255,255,255,0.20);
+}
+
+/* ================= HEADING STYLES ================= */
+h1, h2, h3 {
+  font-family: "Sora", sans-serif;
+  letter-spacing: -0.035em;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* HERO / PRIMARY HEADINGS */
+h1 {
+  font-size: clamp(3.6rem, 6vw, 5.8rem);
+  font-weight: 700;
+  line-height: 1.05;
+  background-image: var(--heading-gradient-primary);
+}
+
+/* SECTION HEADINGS */
+h2 {
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  font-weight: 600;
+  line-height: 1.15;
+  background-image: var(--heading-gradient-secondary);
+}
+
+/* SUBHEADINGS */
+h3 {
+  font-size: 1.45rem;
+  font-weight: 600;
+  color: #cbd5ff;
+  background: none;
+}
+
+/* ================= BODY TEXT ================= */
+p,
+li {
+  font-family: "DM Sans", "Inter", system-ui;
+  font-size: 1.05rem;
+  line-height: 1.95;
+  color: var(--text-secondary);
+}
+
+/* ================= META TEXT ================= */
+small,
+.meta {
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ================= LAYOUT ================= */
+section {
+  padding: clamp(80px, 8vw, 140px)
+           clamp(24px, 6vw, 96px);
+}
+
+/* ================= GLASS CARD ================= */
+.glass-card {
+  position: relative;
+  padding: clamp(52px, 5vw, 76px);
+  border-radius: 34px;
+  background: linear-gradient(
+    180deg,
+    var(--glass-bg-strong),
+    var(--glass-bg-soft)
+  );
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(20px);
+  box-shadow:
+    0 60px 180px rgba(0,0,0,0.65),
+    inset 0 0 0 1px rgba(255,255,255,0.06);
+}
+
+/* ================= ANIMATIONS ================= */
+@keyframes floatSlow {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes glowOrbit {
+  0% {
+    box-shadow:
+      0 60px 180px rgba(0,0,0,0.65),
+      0 0 0 rgba(143,179,255,0);
+  }
+  50% {
+    box-shadow:
+      0 80px 220px rgba(0,0,0,0.75),
+      0 0 80px rgba(143,179,255,0.45);
+  }
+  100% {
+    box-shadow:
+      0 60px 180px rgba(0,0,0,0.65),
+      0 0 0 rgba(143,179,255,0);
+  }
+}
+
+.glass-float {
+  animation:
+    floatSlow 18s ease-in-out infinite,
+    glowOrbit 24s ease-in-out infinite;
+}
+
+/* ================= TAGS ================= */
+.tag {
+  display: inline-block;
+  padding: 8px 20px;
+  font-family: "Inter", system-ui;
+  font-size: 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.06);
+  color: var(--accent-primary);
+  letter-spacing: 0.08em;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tag:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 14px 46px rgba(143,179,255,0.45);
+}
+
+/* ================= CONTACT LINKS ================= */
+
+.primary-link {
+  display: inline-block;
+  margin-bottom: 56px;
+  padding: 16px 44px;
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  background: linear-gradient(
+    135deg,
+    #8fb3ff,
+    #7cf2c2
+  );
+  color: #020617;
+  font-weight: 600;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.primary-link:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 24px 80px rgba(143,179,255,0.55);
+}
+
+.contact-links {
+  display: flex;
+  justify-content: center;
+  gap: 46px;
+}
+
+.contact-links a {
+  position: relative;
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent-primary);
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
+}
+
+.contact-links a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -8px;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accent-secondary),
+    transparent
+  );
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+.contact-links a:hover {
+  opacity: 1;
+}
+
+.contact-links a:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+/* ================= FOOTER ================= */
+
+.site-footer {
+  margin-top: 120px;
+  padding: 48px clamp(24px, 6vw, 96px);
+  position: relative;
+  z-index: 1;
+}
+
+.site-footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(10,15,30,0.65)
+  );
+  pointer-events: none;
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.footer-name {
+  font-family: "Sora", sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  background-image: var(--heading-gradient-secondary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.footer-copy {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+
+.footer-links {
+  display: flex;
+  gap: 42px;
+}
+
+.footer-links a {
+  position: relative;
+  font-size: 0.7rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--accent-primary);
+  opacity: 0.75;
+  transition: opacity 0.3s ease;
+}
+
+.footer-links a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accent-secondary),
+    transparent
+  );
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+.footer-links a:hover {
+  opacity: 1;
+}
+
+.footer-links a:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+/* Responsive */
+@media (max-width: 720px) {
+  .footer-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 28px;
+  }
+}
+@import "./styles/responsive.css";
